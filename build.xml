@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<project default="build" basedir=".">
+    <property name="server" value="Server.jar"/>
+	<property name="client" value="Client.jar"/>
+    <property name="src.dir" location="${basedir}/src"/>
+    <property name="build" location="${basedir}/build"/>
+    <property name="build.classes" location="${build}/classes"/>
+	
+    <target name="build" depends="clean">
+        <mkdir dir="${build.classes}"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes}"/>
+
+		<javac srcdir="${basedir}/test" sourcepath="${basedir}/src" destdir="${build.classes}/">
+			<classpath>
+				<pathelement path="${basedir}/lib/junit.jar"/>
+				<pathelement path="${basedir}/src"/>
+			</classpath>
+        </javac>
+
+		<mkdir dir="${build}/client"/>
+		<copy todir="${build}/client">
+            <fileset dir="${src.dir}/" includes="client_data/"/>
+			<fileset dir="${src.dir}/" includes ="client.sh"/>
+        </copy>
+
+		<mkdir dir="${build}/server"/>
+		<copy todir="${build}/server">
+            <fileset dir="${src.dir}/" includes="server_data/"/>
+			<fileset dir="${src.dir}/" includes="server.sh"/>
+        </copy>
+
+        <jar jarfile="${build}/server/${server}">
+			<fileset dir="${build.classes}/" includes="model/"/>
+			<manifest>
+				<attribute name="Main-Class" value="model.Server"/>
+		   </manifest>
+        </jar>
+
+		<jar jarfile="${build}/client/${client}">
+			<fileset dir="${build.classes}/" includes="view/"/>
+			<manifest>
+				<attribute name="Main-Class" value="view.TickTackToe"/>
+		   </manifest>
+		</jar>
+
+		<junit fork="yes" haltonfailure="yes">
+			<classpath>
+				<pathelement path="${basedir}/lib/junit.jar"/>
+				<pathelement path="${basedir}/lib/hamcrest-core.jar"/>	
+				<pathelement location="${build.classes}"/>
+			</classpath>
+			<formatter type="plain" usefile="false" />
+			<test name="test.GameModelTest"/>
+			<test name="test.UserListTest"/>
+		</junit>
+	</target>
+	
+    <target name="clean">
+        <delete dir="${build}"/>
+    </target>
+	
+</project>
