@@ -18,7 +18,7 @@ public class Server {
 		this.gameList = new GameList();
 		this.frame = new JFrame("Server");
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.frame.setBounds(500, 200, 190, 70);
+		this.frame.setBounds(500, 200, 230, 100);
 		this.frame.setLayout(null);
 		this.frame.setResizable(false);
 		

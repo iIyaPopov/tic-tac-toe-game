@@ -8,8 +8,8 @@ public class Constants {
 	public static final int GAME_LIMIT			= 300;
 	public static final int FIELD_W_SIZE 		= 300;
 	public static final int FIELD_H_SIZE 		= 300;
-	public static final int FRAME_WIDTH 		= 510;
-	public static final int FRAME_HEIGHT	 	= 310;
+	public static final int FRAME_WIDTH 		= 530;
+	public static final int FRAME_HEIGHT	 	= 330;
 	public static final int FIELD_HEIGHT 		= 10;
 	public static final int FIELD_WIDTH 		= 10;
 	public static final int PORT		  		= 10000;

@@ -30,8 +30,9 @@ public class GameFrame extends Thread {
 			frame = new JFrame();
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setLayout(null);
+			//frame.setPreferredSize(new Dimension(505, 305));
 			frame.setBounds(500, 100, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
-			frame.setResizable(false);
+			frame.setResizable(true);
 			frame.setVisible(true);
 			System.err.println("GameFrame <start game>");
 
@@ -196,6 +197,7 @@ public class GameFrame extends Thread {
 		JFrame frameChoice = new JFrame("Choice of figure");
 		frameChoice.setResizable(false);
 		frameChoice.setBounds(frame.getX() + 200, frame.getY() + 50, 200, 60);
+		//frameChoice.setPreferredSize(new Dimension(200, 60));
 		
 		JButton circleButton = new JButton();
 		circleButton.setBounds(130, 15, 32, 32);
@@ -220,6 +222,7 @@ public class GameFrame extends Thread {
 		frameChoice.setLayout(null);
 		frameChoice.add(circleButton);
 		frameChoice.add(crossButton);
+		//frameChoice.pack();
 		frameChoice.setVisible(true);
 		
 		while (figure.equals(Constants.NOT_FIGURE)) {
